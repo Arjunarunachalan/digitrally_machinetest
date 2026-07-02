@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Learn React",
+      "description": "Practice Hooks",
+      "status": "Pending",
+      "dueDate": "2026-07-05"
+    },
+    {
+      "id": "2",
+      "title": "Build Redux Store",
+      "description": "Configure Toolkit",
+      "status": "Completed",
+      "dueDate": "2026-07-03"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
