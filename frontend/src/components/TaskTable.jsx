@@ -29,14 +29,21 @@ function TaskTable({ tasks }) {
                                 <td className="border p-2">{task.dueDate}</td>
                                 <td className="border p-2 space-x-2">
                                     <Link to={`/tasks/${task.id}`}>
-                                        <button>Edit</button>
+                                        <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                                            Edit
+                                        </button>
                                     </Link>
-                                    <button>Delete</button>
+                                    <button
+                                        onClick={() => onDelete(task.id)}
+                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))
                     )}
-                </tbody>
+                </tbody>    
             </table>
         </div>
 
