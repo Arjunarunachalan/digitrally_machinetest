@@ -13,6 +13,13 @@
       "description": "Configure Toolkit",
       "status": "Completed",
       "dueDate": "2026-07-03"
+    },
+    {
+      "title": "leraning Ai ",
+      "description": "Sub topics : ML,DL,LLM etcc",
+      "status": "Pending",
+      "dueDate": "2026-07-03",
+      "id": "O6XPup_yVyE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

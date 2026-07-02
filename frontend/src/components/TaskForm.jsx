@@ -44,8 +44,12 @@ function TaskForm({
     };
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="max-w-2xl mx-auto mt-10 bg-white shadow-lg rounded-lg p-8">
+                <h2 className="text-2xl font-bold mb-6">
+      {submitText}
+    </h2>
                 <input
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="text"
                     name="title"
                     value={formData.title}
@@ -56,43 +60,67 @@ function TaskForm({
                 {errors.title && (
                     <p>{errors.title}</p>
                 )}
-            </div>
-            <div>
+         
+            <div className="mb-5">
+                <label className="block mb-2 font-medium">
+                    Description
+                </label>
+
                 <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleChange}
+                    rows="4"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
 
                 {errors.description && (
-                    <p>{errors.description}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                        {errors.description}
+                    </p>
                 )}
             </div>
-            <div>
+            <div className="mb-5">
+                <label className="block mb-2 font-medium">
+                    Status
+                </label>
+
                 <select
                     name="status"
                     value={formData.status}
                     onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2"
                 >
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
                 </select>
             </div>
-            <div>
+            <div className="mb-6">
+                <label className="block mb-2 font-medium">
+                    Due Date
+                </label>
+
                 <input
                     type="date"
                     name="dueDate"
                     value={formData.dueDate}
                     onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2"
                 />
 
                 {errors.dueDate && (
-                    <p>{errors.dueDate}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                        {errors.dueDate}
+                    </p>
                 )}
             </div>
-            <button type="submit">
+            <button
+                type="submit"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg transition"
+            >
                 {submitText}
             </button>
+               </div>
         </form>
     )
 
