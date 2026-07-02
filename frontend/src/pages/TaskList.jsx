@@ -1,4 +1,4 @@
-import { arrayMove } from "@dnd-kit/sortable";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, getTasks } from "../services/taskApi";
@@ -11,14 +11,12 @@ const TaskList = () => {
     const [filter, setFilter] = useState("All");
     const dispatch = useDispatch();
     const { tasks } = useSelector((state) => state.tasks);
-    const [orderedTasks, setOrderedTasks] = useState([]);
+
 
     useEffect(() => {
         fetchTasks()
     }, [])
-    useEffect(() => {
-        setOrderedTasks(tasks);
-    }, [tasks]);
+    
     const fetchTasks = async () => {
         try {
             const response = await getTasks();
@@ -39,29 +37,13 @@ const TaskList = () => {
     };
 
     const filteredTasks =
-        filter === "All"
-            ? orderedTasks
-            : orderedTasks.filter((task) => task.status === filter);
+  filter === "All"
+    ? tasks
+    : tasks.filter((task) => task.status === filter);
 
 
 
-    const handleDragEnd = (event) => {
-        const { active, over } = event;
-
-        if (!over || active.id === over.id) return;
-
-        const oldIndex = orderedTasks.findIndex(
-            (task) => task.id === active.id
-        );
-
-        const newIndex = orderedTasks.findIndex(
-            (task) => task.id === over.id
-        );
-
-        setOrderedTasks(
-            arrayMove(orderedTasks, oldIndex, newIndex)
-        );
-    };
+    
     return (
         <div className="max-w-6xl mx-auto p-8">
             <div className="flex justify-between items-center mb-6">
@@ -98,11 +80,10 @@ const TaskList = () => {
                 </button>
             </div>
 
-            <TaskTable
-                tasks={filteredTasks}
-                onDelete={handleDelete}
-                onDragEnd={handleDragEnd}
-            />
+           <TaskTable
+    tasks={filteredTasks}
+    onDelete={handleDelete}
+/>
         </div>
     )
 }
