@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Learn React",
-      "description": "Practice Hooks",
+      "description": "Practice Hooks...",
       "status": "Pending",
       "dueDate": "2026-07-05"
     },
@@ -15,7 +15,7 @@
       "dueDate": "2026-07-03"
     },
     {
-      "title": "leraning Ai ",
+      "title": "leraning Ai!",
       "description": "Sub topics : ML,DL,LLM etcc",
       "status": "Pending",
       "dueDate": "2026-07-03",

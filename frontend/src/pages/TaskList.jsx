@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, getTasks } from "../services/taskApi";
 import { deleteTask as deleteTaskAction, setTasks } from "../redux/taskSlice";
-import TaskTable from "../components/TaskTable";
+import Table from "../components/Table";
 import { Link } from "react-router-dom";
 
 
@@ -16,7 +16,7 @@ const TaskList = () => {
     useEffect(() => {
         fetchTasks()
     }, [])
-    
+
     const fetchTasks = async () => {
         try {
             const response = await getTasks();
@@ -37,13 +37,58 @@ const TaskList = () => {
     };
 
     const filteredTasks =
-  filter === "All"
-    ? tasks
-    : tasks.filter((task) => task.status === filter);
+        filter === "All"
+            ? tasks
+            : tasks.filter((task) => task.status === filter);
+
+    const columns = [
+        {
+            header: "Title",
+            accessorKey: "title",
+        },
+        {
+            header: "Description",
+            accessorKey: "description",
+        },
+        {
+            header: "Status",
+            cell: (row) => (
+                <span
+                    className={`px-2 py-1 rounded-full text-sm ${row.status === "Completed"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-yellow-100 text-yellow-700"
+                        }`}
+                >
+                    {row.status}
+                </span>
+            ),
+        },
+        {
+            header: "Due Date",
+            accessorKey: "dueDate",
+        },
+        {
+            header: "Actions",
+            cell: (row) => (
+                <div className="space-x-2">
+                    <Link to={`/tasks/${row.id}`}>
+                        <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                            Edit
+                        </button>
+                    </Link>
+
+                    <button
+                        onClick={() => handleDelete(row.id)}
+                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    >
+                        Delete
+                    </button>
+                </div>
+            ),
+        },
+    ];
 
 
-
-    
     return (
         <div className="max-w-6xl mx-auto p-8">
             <div className="flex justify-between items-center mb-6">
@@ -79,11 +124,10 @@ const TaskList = () => {
                     Completed
                 </button>
             </div>
-
-           <TaskTable
-    tasks={filteredTasks}
-    onDelete={handleDelete}
-/>
+            <Table
+                columns={columns}
+                data={filteredTasks}
+            />
         </div>
     )
 }
